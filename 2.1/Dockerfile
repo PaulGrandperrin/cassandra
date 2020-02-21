@@ -1,5 +1,5 @@
 # vim:set ft=dockerfile:
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 # explicitly set user/group IDs
 RUN groupadd -r cassandra --gid=999 && useradd -r -g cassandra --uid=999 cassandra
@@ -9,7 +9,7 @@ RUN set -eux; \
 	apt-get install -y --no-install-recommends \
 		gnupg dirmngr apt-transport-https ca-certificates \
 # solves warning: "jemalloc shared library could not be preloaded to speed up memory allocations"
-		libjemalloc1 \
+		libjemalloc2 \
 # free is used by cassandra-env.sh
 		procps \
 # "ip" is not required by Cassandra itself, but is commonly used in scripting Cassandra's configuration (since it is so fixated on explicit IP addresses)
